@@ -1,6 +1,6 @@
 <?php render('_header',array('title'=>$title))?>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+<script src="assets/js/Chart.min.js"></script>
 
 <div class="results">
 
@@ -10,7 +10,7 @@
 	</p>
 	
 	<p>
-		<table data-role="table" id="movie-table" data-mode="reflow" class="ui-responsive">
+		<table data-role="table" id="results-table" data-mode="reflow" class="ui-responsive">
 			<thead>
 				<tr>
 					<th data-priority="1">Label</th>

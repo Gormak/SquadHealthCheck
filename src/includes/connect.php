@@ -1,10 +1,5 @@
 <?php
 
-/*
-	This file creates a new MySQL connection using the PDO class.
-	The login details are taken from config.php.
-*/
-
 try {
 	$db = new PDO(
 		"mysql:host=$db_host;dbname=$db_name;charset=UTF8",
