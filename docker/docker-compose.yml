@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  php-fpm:
+    build:
+      context: ./php-fpm
+    volumes:
+      - ../src:/var/www
+
+  nginx:
+    build:
+      context: ./nginx
+    volumes:
+      - ../src:/var/www
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/sites/:/etc/nginx/sites-available
+      - ./nginx/conf.d/:/etc/nginx/conf.d
+    depends_on:
+      - php-fpm
+    ports:
+      - "80:80"
+      - "443:443"
+
+  mailhog:
+    image: mailhog/mailhog
+    logging:
+      driver: 'none'
+    ports: 
+      - "1025:1025"
+      - "8025:8025"
+
+  database:
+    build:
+      context: ./database
+    environment:
+      - MYSQL_DATABASE=shc_bdd
+      - MYSQL_USER=shc
+      - MYSQL_PASSWORD=shc
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./database/shc_bdd.sql:/docker-entrypoint-initdb.d/shc_bdd.sql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - database
+    environment:
+      PMA_HOST: database
+      PMA_PORT: 3306
+    ports:
+      - '8888:80'
