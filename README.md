@@ -14,7 +14,6 @@
 
 > Squad Health Check for Scrum Team
 
-### 🏠 [Homepage](https://github.com/Gormak/SquadHealthCheck)
 
 ## Install
 
